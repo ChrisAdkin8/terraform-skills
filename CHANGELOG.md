@@ -4,6 +4,8 @@ All notable changes to this project are documented here. Format based on [Keep a
 
 ## [Unreleased]
 
+## [0.3.0] — 2026-04-17
+
 ### Changed (breaking)
 
 - **Repo renamed** from `claude-skills-terraform` to `terraform-skills` to reflect that the workflows are now available in two shapes (Claude Code skills + cross-harness MCP server). GitHub auto-redirects the old URL; existing clones keep working. Update your remote with `git remote set-url origin https://github.com/ChrisAdkin8/terraform-skills.git` at your leisure.
@@ -14,6 +16,7 @@ All notable changes to this project are documented here. Format based on [Keep a
 - **`mcp/` — cross-harness MCP server** exposing all four workflows (`tf-analyze`, `tf-cost`, `tf-refactor`, `tf-test`) as [Model Context Protocol](https://modelcontextprotocol.io) tools. Usable from Claude Desktop, Cursor, Cline, Zed, Continue, and any other MCP-capable harness. Ships as a Python package (`terraform-skills-mcp`) built on FastMCP. Wraps the existing `claude-skills/tf-analyze/scripts/detect.py` and shells out to `terraform` / `infracost` for the other three — no duplicated logic.
 - **`docs/harness-compatibility.md`** — matrix comparing the Claude skills surface vs the MCP server surface (what each exposes, trade-offs, when to pick which).
 - **`claude-skills/README.md`** — short explainer that these files are the Claude-Code-native surface, pointing cross-harness users at `mcp/`.
+- **`banner.svg`** — horizontal README banner (1280×240) showing the four workflows as a pipeline. `logo.svg` retained for avatar use.
 
 ## [0.2.0] — 2026-04-17
 
@@ -47,6 +50,7 @@ All notable changes to this project are documented here. Format based on [Keep a
 - `docs/argument-grammar.md` — shared `key:value` argument convention across all skills.
 - Apache-2.0 license.
 
-[Unreleased]: https://github.com/ChrisAdkin8/terraform-skills/compare/v0.2.0...HEAD
+[Unreleased]: https://github.com/ChrisAdkin8/terraform-skills/compare/v0.3.0...HEAD
+[0.3.0]: https://github.com/ChrisAdkin8/terraform-skills/releases/tag/v0.3.0
 [0.2.0]: https://github.com/ChrisAdkin8/terraform-skills/releases/tag/v0.2.0
 [0.1.0]: https://github.com/ChrisAdkin8/terraform-skills/releases/tag/v0.1.0
