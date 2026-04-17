@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="logo.svg" alt="terraform-skills" width="160" height="160"/>
+  <img src="banner.svg" alt="terraform-skills — analyze, test, refactor, cost workflows framed by HCL braces" width="100%"/>
 </p>
 
 # terraform-skills

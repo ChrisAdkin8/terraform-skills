@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 240" role="img" aria-labelledby="title desc" preserveAspectRatio="xMidYMid meet">
+  <title id="title">terraform-skills</title>
+  <desc id="desc">Wordmark framed by HCL braces with the four workflows — analyze, test, refactor, cost — arranged as a pipeline beneath. Terraform purple on dark.</desc>
+
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1b1235"/>
+      <stop offset="1" stop-color="#0b0820"/>
+    </linearGradient>
+    <linearGradient id="wordmark" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#9b5cd8"/>
+      <stop offset="0.5" stop-color="#c28cff"/>
+      <stop offset="1" stop-color="#9b5cd8"/>
+    </linearGradient>
+    <linearGradient id="brace" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#b679ff"/>
+      <stop offset="1" stop-color="#7b42bc"/>
+    </linearGradient>
+    <linearGradient id="rail" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#7b42bc" stop-opacity="0"/>
+      <stop offset="0.1" stop-color="#7b42bc" stop-opacity="0.9"/>
+      <stop offset="0.9" stop-color="#7b42bc" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#7b42bc" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1280" height="240" rx="32" ry="32" fill="url(#bg)"/>
+
+  <!-- left brace { -->
+  <path d="M112 44
+           C 70 44  70 80  70 98
+           C 70 114 58  122 44  120
+           C 58  126 70  134 70  150
+           C 70  168 70  196 112 196"
+        fill="none" stroke="url(#brace)" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- right brace } -->
+  <path d="M1168 44
+           C1210 44 1210 80 1210 98
+           C1210 114 1222 122 1236 120
+           C1222 126 1210 134 1210 150
+           C1210 168 1210 196 1168 196"
+        fill="none" stroke="url(#brace)" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- wordmark -->
+  <text x="640" y="112" text-anchor="middle"
+        font-family="-apple-system, 'SF Pro Display', 'Segoe UI', Inter, 'Helvetica Neue', Arial, sans-serif"
+        font-size="72" font-weight="800" letter-spacing="-2.5"
+        fill="url(#wordmark)">terraform-skills</text>
+
+  <!-- tagline: cross-harness description -->
+  <text x="640" y="148" text-anchor="middle"
+        font-family="-apple-system, 'SF Pro Display', 'Segoe UI', Inter, 'Helvetica Neue', Arial, sans-serif"
+        font-size="18" font-weight="500" letter-spacing="0.5"
+        fill="#8e78b5" opacity="0.85">Safety-first Terraform for any AI coding harness</text>
+
+  <!-- pipeline rail (subtle connector line) -->
+  <line x1="240" y1="196" x2="1040" y2="196" stroke="url(#rail)" stroke-width="1.5" stroke-dasharray="2 4" opacity="0.6"/>
+
+  <!-- pipeline: four workflows -->
+  <g font-family="-apple-system, 'SF Pro Display', 'Segoe UI', Inter, 'Helvetica Neue', Arial, sans-serif"
+     font-size="20" font-weight="600">
+
+    <!-- 1. analyze (magnifying glass) -->
+    <g transform="translate(330,196)">
+      <circle cx="0" cy="0" r="18" fill="#1b1235" stroke="#7b42bc" stroke-width="1"/>
+      <circle cx="-2" cy="-2" r="7" fill="none" stroke="#c28cff" stroke-width="2.2"/>
+      <line x1="3" y1="3" x2="9" y2="9" stroke="#c28cff" stroke-width="2.8" stroke-linecap="round"/>
+      <text x="32" y="6" fill="#e6d6ff">analyze</text>
+    </g>
+
+    <!-- separator -->
+    <text x="475" y="203" font-size="22" font-weight="400" fill="#5a3f7f">›</text>
+
+    <!-- 2. test (checkmark in ring) -->
+    <g transform="translate(535,196)">
+      <circle cx="0" cy="0" r="18" fill="#1b1235" stroke="#7b42bc" stroke-width="1"/>
+      <polyline points="-6,1 -1,6 7,-4" fill="none" stroke="#c28cff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="32" y="6" fill="#e6d6ff">test</text>
+    </g>
+
+    <!-- separator -->
+    <text x="633" y="203" font-size="22" font-weight="400" fill="#5a3f7f">›</text>
+
+    <!-- 3. refactor (double arrow / swap) -->
+    <g transform="translate(693,196)">
+      <circle cx="0" cy="0" r="18" fill="#1b1235" stroke="#7b42bc" stroke-width="1"/>
+      <path d="M-9 -4 L 6 -4 M 3 -8 L 8 -4 L 3 0" fill="none" stroke="#c28cff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M 9 4 L -6 4 M -3 8 L -8 4 L -3 0" fill="none" stroke="#c28cff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="32" y="6" fill="#e6d6ff">refactor</text>
+    </g>
+
+    <!-- separator -->
+    <text x="830" y="203" font-size="22" font-weight="400" fill="#5a3f7f">›</text>
+
+    <!-- 4. cost (dollar in ring) -->
+    <g transform="translate(890,196)">
+      <circle cx="0" cy="0" r="18" fill="#1b1235" stroke="#7b42bc" stroke-width="1"/>
+      <text x="0" y="7" text-anchor="middle" font-size="20" font-weight="800" fill="#c28cff">$</text>
+      <text x="32" y="6" fill="#e6d6ff">cost</text>
+    </g>
+  </g>
+
+  <!-- subtle accent sparks (echoing the original logo) -->
+  <circle cx="1232" cy="36" r="5" fill="#b679ff" opacity="0.75"/>
+  <circle cx="48" cy="36" r="3" fill="#b679ff" opacity="0.5"/>
+  <circle cx="48" cy="204" r="3" fill="#b679ff" opacity="0.35"/>
+  <circle cx="1232" cy="204" r="3" fill="#b679ff" opacity="0.35"/>
+</svg>
