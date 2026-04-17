@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">claude-skills-terraform</title>
+  <desc id="desc">Stylised HCL braces flanking an angular spark, in Terraform purple on a dark rounded square.</desc>
+
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1b1235"/>
+      <stop offset="1" stop-color="#0b0820"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#7b42bc"/>
+      <stop offset="1" stop-color="#b679ff"/>
+    </linearGradient>
+    <linearGradient id="spark" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#c28cff"/>
+      <stop offset="1" stop-color="#7b42bc"/>
+    </linearGradient>
+  </defs>
+
+  <!-- rounded square background -->
+  <rect x="0" y="0" width="512" height="512" rx="96" ry="96" fill="url(#bg)"/>
+
+  <!-- left brace { -->
+  <path d="M184 112
+           C132 112 132 176 132 200
+           C132 228 120 244 96 256
+           C120 268 132 284 132 312
+           C132 336 132 400 184 400"
+        fill="none" stroke="url(#accent)" stroke-width="28" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- right brace } -->
+  <path d="M328 112
+           C380 112 380 176 380 200
+           C380 228 392 244 416 256
+           C392 268 380 284 380 312
+           C380 336 380 400 328 400"
+        fill="none" stroke="url(#accent)" stroke-width="28" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- central spark / lightning: angular, evokes AI + plan diff -->
+  <path d="M276 128 L216 268 L248 268 L236 384 L296 244 L264 244 Z"
+        fill="url(#spark)"/>
+
+  <!-- subtle top-right accent dot -->
+  <circle cx="432" cy="96" r="10" fill="#b679ff" opacity="0.85"/>
+</svg>

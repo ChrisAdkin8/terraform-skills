@@ -1,0 +1,19 @@
+id: STK-GKE-002
+title: "GKE cluster missing Workload Identity"
+section: stack
+default_urgency: HIGH
+blast_radius: environment
+status: stub
+cis:
+  - "8.5.2"
+patterns:
+  - kind: resource_missing_arg
+    resource: google_container_cluster
+    nested_path: workload_identity_config.workload_pool
+recommendation: |
+  Add `workload_identity_config { workload_pool = "<project>.svc.id.goog" }`.
+  Without Workload Identity, pods must use static service account keys
+  mounted as secrets — a long-lived credential leak risk.
+verification: |
+  `gcloud container clusters describe <name> --format='value(workloadIdentityConfig.workloadPool)'`
+  must return a non-empty value.

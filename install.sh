@@ -12,7 +12,7 @@
 
 set -euo pipefail
 
-ALL_SKILLS=("tf-test" "tf-refactor" "tf-cost")
+ALL_SKILLS=("tf-test" "tf-refactor" "tf-cost" "tf-analyze")
 
 TARGET=""
 MODE="symlink"

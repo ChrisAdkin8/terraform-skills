@@ -1,0 +1,23 @@
+id: SEC-NETWORK-001
+title: "SSH (tcp:22) exposed to 0.0.0.0/0"
+section: security
+default_urgency: CRITICAL
+blast_radius: infrastructure-wide
+status: stub
+cis:
+  - "3.6"
+patterns:
+  - kind: hcl_attr
+    resource: google_compute_firewall
+    path: source_ranges
+    description: |
+      Stub. Detection requires inspecting allow blocks for tcp:22 and
+      checking source_ranges contains 0.0.0.0/0. Add a fixture
+      `firewall_open_ssh/` and a custom pattern handler.
+recommendation: |
+  Restrict `source_ranges` to corporate CIDRs or use IAP TCP forwarding
+  (`google_iap_tunnel_iam_member`) for SSH access. Never expose tcp:22
+  to the public internet.
+verification: |
+  `gcloud compute firewall-rules list --filter='allowed.ports:22 AND sourceRanges:0.0.0.0/0'`
+  should return zero rows.

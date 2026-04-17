@@ -1,0 +1,31 @@
+# tf-analyze as a pre-commit hook
+#
+# Add to your repo's .pre-commit-config.yaml:
+#
+#   repos:
+#     - repo: local
+#       hooks:
+#         - id: tf-analyze
+#           name: tf-analyze (diff mode)
+#           entry: python3 ~/.claude/skills/tf-analyze/scripts/detect.py
+#           language: system
+#           files: \.tf$
+#           args:
+#             - --target=.
+#             - --mode=diff
+#             - --fail-on=HIGH
+#             - --format=text
+#
+# Diff mode only scans .tf files changed vs the default base branch, so the
+# hook stays fast on large repos. --fail-on HIGH blocks commits with HIGH
+# or CRITICAL findings; lower to MEDIUM for stricter enforcement.
+#
+# Pre-requisites: Python 3.10+. No pip dependencies — the script is
+# stdlib-only. Hook cost on a 5k-file repo: <2s cold, <1s warm.
+
+- id: tf-analyze
+  name: tf-analyze
+  entry: python3 scripts/tf-analyze-precommit.sh
+  language: script
+  files: \.tf$
+  pass_filenames: false

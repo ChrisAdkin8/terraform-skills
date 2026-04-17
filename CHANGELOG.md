@@ -4,6 +4,23 @@ All notable changes to this project are documented here. Format based on [Keep a
 
 ## [Unreleased]
 
+## [0.2.0] — 2026-04-17
+
+### Added
+
+- `tf-analyze` skill — comprehensive static and plan-time analysis with 60 catalogue-backed finding IDs, 40+ test fixtures, deterministic risk scoring, CIS benchmark mapping, and delta tracking between runs. Execution modes: `static`, `diff`, `plan`, `verify-fixed`, `self-test`. Output formats: `markdown`, `json`, `sarif`.
+- `skills/tf-analyze/catalog/` — 60 YAML rule definitions grouped by focus (SEC, ROB, OPS, MOD, COST, CI-TEST) with severity, blast radius, and CIS mapping.
+- `skills/tf-analyze/fixtures/` — 40+ synthetic Terraform snippets that assert specific catalogue IDs. Enables `mode:self-test`.
+- `skills/tf-analyze/scripts/detect.py` — deterministic detection pass used by `static` and `diff` modes.
+- `skills/tf-analyze/integrations/` — drop-in GitHub Actions workflow and pre-commit hook.
+- `logo.svg` — repo logo (HCL braces + spark, Terraform purple on dark).
+- Top-level `README.md` now embeds the logo and includes `tf-analyze` in the skill table and reference section.
+- `install.sh` includes `tf-analyze` in the default skill list.
+
+### Notes
+
+- `skills/tf-analyze/reports/` (dated audit reports against real infrastructure) deliberately excluded from this public release.
+
 ## [0.1.0] — 2026-04-17
 
 ### Added
@@ -19,5 +36,6 @@ All notable changes to this project are documented here. Format based on [Keep a
 - `docs/argument-grammar.md` — shared `key:value` argument convention across all skills.
 - Apache-2.0 license.
 
-[Unreleased]: https://example.com/claude-skills-terraform/compare/v0.1.0...HEAD
-[0.1.0]: https://example.com/claude-skills-terraform/releases/tag/v0.1.0
+[Unreleased]: https://github.com/ChrisAdkin8/claude-skills-terraform/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/ChrisAdkin8/claude-skills-terraform/releases/tag/v0.2.0
+[0.1.0]: https://github.com/ChrisAdkin8/claude-skills-terraform/releases/tag/v0.1.0
