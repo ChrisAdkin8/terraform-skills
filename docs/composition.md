@@ -1,6 +1,6 @@
 # Skill Composition
 
-The three skills in this repo are independent but designed to compose. This document shows the intended flows and the hand-off points between them.
+The four workflows in this repo are independent but designed to compose. The snippets below use the Claude Code slash-command form; the MCP tool names follow the pattern `tf_<workflow>_<action>` — see [`mcp/README.md`](../mcp/README.md) for the full reference. This document shows the intended flows and the hand-off points between them.
 
 ## The vibe-coding loop
 

@@ -13,32 +13,43 @@ Each skill in this repo embodies three principles:
 ## Repository layout
 
 ```
-claude-skills-terraform/
+terraform-claude-skills/
 ├── README.md                 — top-level user docs
 ├── LICENSE                   — Apache-2.0
 ├── CONTRIBUTING.md           — this file
 ├── CHANGELOG.md              — release notes
-├── install.sh                — installer
+├── install.sh                — installer for the Claude Code skills shape
 ├── docs/
-│   ├── composition.md        — how skills compose
-│   └── argument-grammar.md   — shared arg conventions
-└── skills/
-    ├── tf-test/
-    │   ├── README.md         — short, GitHub-browsing friendly
-    │   └── SKILL.md          — authoritative skill body (loaded by Claude)
-    ├── tf-refactor/
-    │   ├── README.md
-    │   └── SKILL.md
-    └── tf-cost/
-        ├── README.md
-        └── SKILL.md
+│   ├── composition.md              — how workflows compose
+│   ├── argument-grammar.md         — shared arg conventions (Claude skills)
+│   └── harness-compatibility.md    — Claude skills vs MCP server, trade-offs
+├── claude-claude-skills/            — Claude Code native surface (SKILL.md files)
+│   ├── README.md             — explains these files are Claude-bespoke
+│   ├── tf-analyze/
+│   │   ├── README.md         — short, GitHub-browsing friendly
+│   │   ├── SKILL.md          — authoritative skill body (loaded by Claude)
+│   │   ├── scripts/detect.py — deterministic detection pass (shared with MCP)
+│   │   ├── catalog/          — YAML rule definitions (shared with MCP)
+│   │   └── fixtures/         — test fixtures (shared with MCP)
+│   ├── tf-test/
+│   ├── tf-refactor/
+│   └── tf-cost/
+└── mcp/                      — cross-harness MCP server surface
+    ├── README.md             — tool reference, harness config snippets
+    ├── pyproject.toml        — packaging
+    ├── src/terraform_skills_mcp/
+    │   ├── server.py         — FastMCP entrypoint
+    │   └── tools/            — one module per workflow
+    └── tests/                — smoke tests
 ```
+
+The two surfaces share the **same** underlying assets — `claude-claude-skills/tf-analyze/scripts/detect.py`, `claude-claude-skills/tf-analyze/catalog/`, and `claude-claude-skills/tf-analyze/fixtures/` are imported/read by the MCP server, not duplicated. The Claude-specific bits are the `SKILL.md` playbook (procedure, pre-flights, failure modes, prompting). The MCP server exposes the deterministic *actions* only; the consuming harness's own prompting supplies the judgement.
 
 ## Adding a new skill
 
 1. Pick a short, kebab-case name prefixed with `tf-` if Terraform-related. Keep it under 15 chars.
-2. Create `skills/<name>/SKILL.md` with the frontmatter template below.
-3. Create `skills/<name>/README.md` — short pointer + argument table. Users browsing on GitHub land here first.
+2. Create `claude-skills/<name>/SKILL.md` with the frontmatter template below.
+3. Create `claude-skills/<name>/README.md` — short pointer + argument table. Users browsing on GitHub land here first.
 4. Add the skill to the top-level `README.md` table and `install.sh`'s default skill list.
 5. Add an entry to `CHANGELOG.md` under the "Unreleased" section.
 6. Update `docs/composition.md` if the new skill interacts with others.
@@ -103,7 +114,7 @@ After editing a `SKILL.md`:
 ### YAML frontmatter validation
 
 ```bash
-for f in skills/*/SKILL.md; do
+for f in claude-skills/*/SKILL.md; do
   awk '/^---$/{c++; next} c==1' "$f" | head -20
   echo "---"
 done
@@ -115,6 +126,15 @@ Confirm every `name`, `description`, `allowed-tools`, `model` key is present and
 
 If the skill includes HCL in fenced blocks, extract them into a test fixture and run `terraform fmt -check`. See `tf-test` for the pattern.
 
+## Adding an MCP tool
+
+When you add a new action to a workflow (either a new Claude skill action or a new deterministic capability), mirror it in `mcp/src/terraform_skills_mcp/tools/<workflow>.py` so both surfaces stay in lockstep:
+
+1. Add a `@mcp.tool()` function with a clear docstring — the docstring becomes the MCP tool description and is read by the consuming LLM.
+2. Reuse existing scripts/catalog/fixtures — never fork logic. If the Claude skill shells out to `detect.py`, the MCP tool should too (or import the module).
+3. Add a smoke test under `mcp/tests/` that mocks or skips anything requiring `terraform`/`infracost`/cloud credentials.
+4. Update the tool table in `mcp/README.md` and the top-level `README.md`.
+
 ## Pull request checklist
 
 - [ ] New skill or change follows the `SKILL.md` body structure.
@@ -123,6 +143,7 @@ If the skill includes HCL in fenced blocks, extract them into a test fixture and
 - [ ] `install.sh` default list updated (if adding a skill).
 - [ ] `CHANGELOG.md` has a new entry under "Unreleased".
 - [ ] `docs/composition.md` updated if the skill interacts with others.
+- [ ] MCP tool mirrored under `mcp/src/terraform_skills_mcp/tools/` if the change added a deterministic capability.
 - [ ] Smoke-tested locally against a real Terraform directory.
 - [ ] No credentials, real project IDs, or internal URLs committed.
 

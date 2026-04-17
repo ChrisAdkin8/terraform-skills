@@ -1,0 +1,36 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "terraform-skills-mcp"
+version = "0.3.0"
+description = "MCP server exposing tf-analyze, tf-test, tf-refactor, and tf-cost workflows to any MCP-capable harness."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { file = "../LICENSE" }
+authors = [{ name = "Chris Adkin" }]
+keywords = ["mcp", "terraform", "infracost", "claude", "cursor", "cline"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: Apache Software License",
+    "Intended Audience :: Developers",
+    "Topic :: Software Development :: Code Generators",
+    "Topic :: System :: Systems Administration",
+]
+dependencies = [
+    "fastmcp>=0.4.0",
+    "pyyaml>=6.0",
+]
+
+[project.scripts]
+terraform-skills-mcp = "terraform_skills_mcp.server:main"
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-asyncio>=0.21",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/terraform_skills_mcp"]

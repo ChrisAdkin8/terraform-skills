@@ -72,7 +72,7 @@ esac
 
 # Resolve repo root so the script is runnable from anywhere
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-SKILL_SRC="${REPO_ROOT}/skills"
+SKILL_SRC="${REPO_ROOT}/claude-skills"
 
 # Build the skill list
 if [[ -n "$ONLY" ]]; then
