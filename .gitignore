@@ -1,0 +1,43 @@
+# macOS
+.DS_Store
+._*
+.AppleDouble
+.LSOverride
+.Spotlight-V100
+.Trashes
+
+# Editors
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Claude Code local state (project-local installs via install.sh)
+.claude/skills/
+.claude/settings.local.json
+
+# Terraform artefacts that might appear if someone smoke-tests in-tree
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfplan
+plan.json
+state.backup.*.tfstate
+crash.log
+
+# Infracost artefacts
+cost.json
+infracost-usage.yml.bak
+
+# Generated config from `terraform plan -generate-config-out`
+generated.tf
+
+# Python/Node cruft in case a helper script uses them
+__pycache__/
+*.pyc
+node_modules/
+
+# Local envs
+.env
+.env.local
